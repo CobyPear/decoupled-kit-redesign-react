@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "Bundler",
+
+    "baseUrl": "./src",
+    "paths": {
+      "@lib/*": ["./lib/*"],
+      "@utils/*": ["./components/utils/*"],
+      "@components/*": ["./components/*"],
+      "@screens/*": ["./screens/*"]
+    }
+  }
+}
