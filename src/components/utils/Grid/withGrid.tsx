@@ -1,4 +1,4 @@
-import { Grid } from "@utils/Grid/Grid";
+import { Grid } from "@utils/Grid";
 
 /**
  *
@@ -44,18 +44,16 @@ export const withGrid = <Props,>(Component: React.ComponentType<Props>) => {
   const GridedComponents = <Type,>({
     data,
     props,
-    cols,
     FallbackComponent,
   }: {
     data: Type[];
     props?: Props;
-    cols?: number;
     FallbackComponent?: React.ComponentType;
   }) => {
     return (
       <>
         {data ? (
-          <Grid cols={cols}>
+          <Grid>
             {data.map((content, i) => {
               return (
                 <Component
@@ -74,6 +72,6 @@ export const withGrid = <Props,>(Component: React.ComponentType<Props>) => {
       </>
     );
   };
-  GridedComponents.displayName = `WithGrid(${Component.displayName})`;
+  GridedComponents.displayName = `${Component?.displayName}-Grid`;
   return GridedComponents;
 };
