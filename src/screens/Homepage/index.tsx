@@ -27,7 +27,7 @@ export const Page = () => {
 
   return (
     <section className="mt-48 mx-auto max-w-fit  sm:w-9/12 md:w-10/12 lg:max-w-full bg-slate-700 p-4">
-      {data ? <ArticleGridCards data={data.slice(0, 1)} /> : null}
+      {data ? <ArticleGridCards data={data.slice(0, 3)} /> : null}
     </section>
   );
 };

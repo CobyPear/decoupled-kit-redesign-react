@@ -1,4 +1,4 @@
-import { Page } from "@screens/Homepage";
+import { Page } from "@screens/Homepage/index";
 import { Layout } from "@components/Layout";
 function App() {
   return (
