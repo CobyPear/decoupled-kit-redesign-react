@@ -5,7 +5,7 @@ export const Header = ({ children }: { children?: ReactNode }) => {
     <nav className="navbar sticky mt-4 w-full sm:w-10/12 mx-auto rounded-2xl bg-white">
       <a href="/">
         <figure>
-          <img src="/pantheon.png" alt="Pantheon" width="68" height="68" />
+          <img src="/pantheon-fist-blk.png" alt="Pantheon" width="68" height="68" />
         </figure>
       </a>
       <header>{children}</header>

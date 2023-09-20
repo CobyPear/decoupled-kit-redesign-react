@@ -26,7 +26,7 @@ const ArticleCard = ({
     <article className="card card-compact shadow-xl bg-white last:col-span-2">
       <figure className="bg-blue-100">
         <img
-          className="aspect-auto rounded-t-lg lg:w-fit object-right"
+          className="aspect-auto rounded-t-lg lg:w-fit"
           width={385}
           height={217}
           alt={
@@ -45,7 +45,10 @@ const ArticleCard = ({
             <p>{content.body.summary}</p>
           ) : (
             <p>
-              {content.field_media_image.field_media_image.resourceIdObjMeta.alt}
+              {
+                content.field_media_image.field_media_image.resourceIdObjMeta
+                  .alt
+              }
             </p>
           )}
           <a className={clsx(btn, "ml-auto w-32")}>View</a>
