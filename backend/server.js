@@ -4,6 +4,7 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { serve } from "@hono/node-server";
 import { serveStatic } from "@hono/node-server/serve-static";
+// import { Readable } from "readable-stream";
 
 import process from "node:process";
 
@@ -41,12 +42,11 @@ serve({
   port: process.env.PORT || 8000,
 });
 
-console.log(process.env);
 
 console.log(
   `🌐 Server running at http${
     process.env.NODE_ENV === "production" ? "s" : ""
-  }://${process.env.PANTHEON_ENVIRONMENT_URL ?? "localhost"}:${
+  }://${process.env.VITE_PANTHEON_ENVIRONMENT_URL ?? "localhost"}:${
     process.env.PORT ?? 8000
   }/`
 );
