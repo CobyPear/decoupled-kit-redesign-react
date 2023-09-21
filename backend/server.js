@@ -1,19 +1,17 @@
 import { DrupalState } from "@pantheon-systems/drupal-kit";
 import dotenv from "dotenv";
-import { Hono } from "hono";
-import { cors } from "hono/cors";
-import { serve } from "@hono/node-server";
-import { serveStatic } from "@hono/node-server/serve-static";
-// import { Readable } from "readable-stream";
-
+import express from "express";
 import process from "node:process";
+import cors from "cors";
+import path from "node:path";
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
+dotenv.config({
+  path: ".env.local",
+});
 
-dotenv.config();
-
-const app = new Hono();
+const app = express();
 
 app.use(
-  "/api/*",
   cors({
     origin: "*",
   })
@@ -25,28 +23,25 @@ const store = new DrupalState({
     `https://${process.env.PANTHEON_CMS_ENDPOINT}`,
 });
 
-app.route("/api").get("/articles", async (c) => {
+app.route("/api/articles").get(async (req, res) => {
   const articles = await store.getObject({
     objectName: "node--article",
     params: "include=field_media_image.field_media_image",
   });
-  return c.json(articles, {
-    status: 200,
-  });
+  return res.status(200).json(articles);
 });
 
-app.get("*", serveStatic({ root: "dist" }));
+app.use(express.static("dist"));
 
-serve({
-  app,
-  port: process.env.PORT || 8000,
+app.route("*").get(async (req, res) => {
+  console.log(__dirname);
+  res.sendFile(path.join(__dirname, "..", "dist", "index.html"));
 });
 
-
-console.log(
-  `🌐 Server running at http${
-    process.env.NODE_ENV === "production" ? "s" : ""
-  }://localhost:${
-    process.env.PORT ?? 8000
-  }/`
-);
+app.listen(process.env.PORT ?? 8000, () => {
+  console.log(
+    `🌐 Server running at http${
+      process.env.NODE_ENV === "production" ? "s" : ""
+    }://${process.env.HOSTNAME ?? "localhost"}:${process.env.PORT ?? 8000}/`
+  );
+});
