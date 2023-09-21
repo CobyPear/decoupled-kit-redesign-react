@@ -10,7 +10,7 @@
     "server:dev": "node --watch ./backend/server.js",
     "dev": "pnpm build && pnpm server:dev",
     "build": "tsc && vite build",
-    "start": "node ./backend/server.js"
+    "start": "NODE_ENV=production node ./backend/server.js"
   },
   "dependencies": {
     "@hono/node-server": "^1.1.1",

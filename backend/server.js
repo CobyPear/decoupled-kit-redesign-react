@@ -41,6 +41,8 @@ serve({
   port: process.env.PORT || 8000,
 });
 
+console.log(process.env);
+
 console.log(
   `🌐 Server running at http${
     process.env.NODE_ENV === "production" ? "s" : ""
