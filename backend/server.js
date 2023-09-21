@@ -46,7 +46,7 @@ serve({
 console.log(
   `🌐 Server running at http${
     process.env.NODE_ENV === "production" ? "s" : ""
-  }://${process.env.VITE_PANTHEON_ENVIRONMENT_URL ?? "localhost"}:${
+  }://localhost:${
     process.env.PORT ?? 8000
   }/`
 );
