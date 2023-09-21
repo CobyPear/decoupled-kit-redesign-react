@@ -38,7 +38,6 @@ app.get("*", serveStatic({ root: "dist" }));
 
 serve({
   app,
-  fetch: app.fetch,
   port: process.env.PORT || 8000,
 });
 
