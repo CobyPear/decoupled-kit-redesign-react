@@ -1,10 +1,7 @@
-import { btn } from "@lib/styleHelpers";
 import { withGrid } from "@utils/Grid";
 import clsx from "clsx";
 
-const ArticleCard = ({
-  content,
-}: {
+interface ArticleCardProps {
   content: {
     body: {
       summary: string | null;
@@ -21,9 +18,26 @@ const ArticleCard = ({
       };
     };
   };
-}) => {
+  articles: number;
+}
+
+const ArticleCard = ({ content, articles }: ArticleCardProps) => {
+  // console.log(content, articles);
+  console.log(articles % 2);
   return (
-    <article className="card card-compact shadow-xl bg-white last:col-span-2">
+    <article
+      className={clsx(
+        "card card-compact shadow-xl bg-white",
+        articles === 1 && "lg:col-span-2 xl:col-span-3"
+        // articles % 2 === 0
+        //   ? "lg:last:even:col-span-1 xl:last:even:col-span-2"
+        //   : "lg:last:odd:col-span-2 xl:last:odd:col-span-3",
+        // articles % 3 === 0
+        //   ? "lg:last:odd:col-span-2 xl:last:odd:col-span-1  xl:last:even:col-span-2"
+        //   : "xl:last:even:col-span-3"
+        // "lg:last:odd:col-span-2 xl:even:last:col-span-4 xl:odd:last:col-span-1"
+      )}
+    >
       <figure className="bg-blue-100">
         <img
           className="aspect-auto rounded-t-lg lg:w-fit"
@@ -40,7 +54,7 @@ const ArticleCard = ({
       </figure>
       <section className="card-body">
         <h2 className="text-black card-title align-center">{content.title}</h2>
-        <section className="card-actions mt-auto justify-end">
+        <section className="card-actions mt-auto block xs:flex justify-end">
           {content.body.summary ? (
             <p>{content.body.summary}</p>
           ) : (
@@ -51,7 +65,14 @@ const ArticleCard = ({
               }
             </p>
           )}
-          <a className={clsx(btn, "ml-auto w-32")}>View</a>
+          <a
+            className={clsx(
+              "btn btn-xs xs:btn-sm sm:btn-md md:btn-lg",
+              "sm:ml-auto"
+            )}
+          >
+            View
+          </a>
         </section>
       </section>
     </article>

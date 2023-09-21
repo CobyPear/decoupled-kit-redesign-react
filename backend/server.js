@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { serve } from "@hono/node-server";
+import { serveStatic } from "@hono/node-server/serve-static";
 
 import process from "node:process";
 
@@ -18,7 +19,9 @@ app.use(
 );
 
 const store = new DrupalState({
-  apiBase: process.env.VITE_BACKEND_URL,
+  apiBase:
+    process.env.VITE_BACKEND_URL ||
+    `https://${process.env.PANTHEON_CMS_ENDPOINT}`,
 });
 
 app.route("/api").get("/articles", async (c) => {
@@ -31,10 +34,18 @@ app.route("/api").get("/articles", async (c) => {
   });
 });
 
+app.get("*", serveStatic({ root: "dist" }));
+
 serve({
   app,
   fetch: app.fetch,
-  port: 8000,
+  port: process.env.PORT || 8000,
 });
 
-console.log("🌐 Server running at http://localhost:8000/");
+console.log(
+  `🌐 Server running at http${
+    process.env.NODE_ENV === "production" ? "s" : ""
+  }://${process.env.PANTHEON_ENVIRONMENT_URL ?? "localhost"}:${
+    process.env.PORT ?? 8000
+  }/`
+);

@@ -15,7 +15,7 @@ export const Page = () => {
         const result = await API.articles(controller);
 
         if (result) {
-          setData(result);
+          setData(result.slice(0, 3));
         }
       }
     };
@@ -25,9 +25,22 @@ export const Page = () => {
     return () => controller?.abort();
   }, [data]);
 
+  const Fallback = () => {
+    return <h2>fallback component</h2>;
+  };
+
   return (
-    <section className="mt-48 mx-auto max-w-fit  sm:w-9/12 md:w-10/12 lg:max-w-full bg-slate-700 p-4">
-      {data ? <ArticleGridCards data={data.slice(0, 3)} /> : null}
+    <section className="mt-48 mx-auto bg-zinc-200 p-16">
+      {data ? (
+        <ArticleGridCards
+          data={data}
+          articles={data.length}
+          FallbackComponent={Fallback}
+        />
+      ) : null}
+      <a className={`btn border-black text-black btn-outline`}>
+        See all articles
+      </a>
     </section>
   );
 };

@@ -33,27 +33,28 @@ import { Grid } from "@utils/Grid";
  * }
  * ```
  */
+/**
+ * @param props.data - The to be passed to the Component as the content prop
+ * @param props.FallbackComponent -  Component to be rendered if data is undefined
+ * @returns The component passed to withGrid in a grid with the given number of columns
+ */
 export const withGrid = <Props,>(Component: React.ComponentType<Props>) => {
-  /**
-   * @param props.data - The to be passed to the Component as the content prop
-   * @param props.cols - The number of columns to build a grid with. This is an optional prop which will default to 3 if not provided
-   * @default 3
-   * @param props.FallbackComponent -  Component to be rendered if data is undefined
-   * @returns The component passed to withGrid in a grid with the given number of columns
-   */
-  const GridedComponents = <Type,>({
+  const GridedComponents = <DataType,>({
     data,
-    props,
     FallbackComponent,
+    ...props
   }: {
-    data: Type[];
-    props?: Props;
+    data: DataType[];
     FallbackComponent?: React.ComponentType;
+    props?: Props;
+    // necessary to workaround TS bug
+  } & {
+    [P in keyof Props]?: Props[P];
   }) => {
     return (
       <>
         {data ? (
-          <Grid>
+          <Grid items={data.length}>
             {data.map((content, i) => {
               return (
                 <Component

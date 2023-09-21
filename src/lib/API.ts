@@ -1,4 +1,6 @@
-const baseUrl = "http://localhost:8000/api";
+const baseUrl =
+  `${import.meta.env.VITE_PANTHEON_ENVIRONMENT_URL}/api` ||
+  "http://localhost:8000/api";
 
 // fetch data helper
 const fetchData = async (url: string, controller: AbortController) => {
