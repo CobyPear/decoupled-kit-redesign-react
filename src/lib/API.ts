@@ -1,5 +1,5 @@
 const baseUrl =
-  `${import.meta.env.VITE_PANTHEON_ENVIRONMENT_URL}/api` ||
+  `/api` ||
   "http://localhost:8000/api";
 
 // fetch data helper
