@@ -32,7 +32,7 @@ const ArticleCard = ({ content, articles }: ArticleCardProps) => {
         "min-w-md max-w-md",
         oneArticle && "lg:card-side lg:col-span-2",
         oddArticles &&
-          "last:lg:max-xl:card-side last:lg:max-xl:col-span-2 last:lg:min-w-fit last:lg:max-w-screen-md"
+          "last:lg:card-side last:lg:col-span-2 last:lg:min-w-fit last:lg:max-w-screen-md"
       )}
     >
       <figure className="">
