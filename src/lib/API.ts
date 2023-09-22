@@ -1,6 +1,5 @@
 const baseUrl =
-  `/api` ||
-  "http://localhost:8000/api";
+  import.meta.env.MODE === "development" ? "http://localhost:8000/api" : `/api`;
 
 // fetch data helper
 const fetchData = async (url: string, controller: AbortController) => {

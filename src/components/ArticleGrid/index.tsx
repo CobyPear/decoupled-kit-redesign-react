@@ -68,7 +68,7 @@ const ArticleCard = ({ content, articles }: ArticleCardProps) => {
           <a
             className={clsx(
               "btn btn-xs xs:btn-sm sm:btn-md md:btn-lg",
-              "sm:ml-auto"
+              "sm:ml-auto p-4"
             )}
           >
             View

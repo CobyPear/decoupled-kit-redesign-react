@@ -5,8 +5,11 @@ import process from "node:process";
 import cors from "cors";
 import path from "node:path";
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
+
+const prod = process.env.NODE_ENV === "production";
+
 dotenv.config({
-  path: ".env.local",
+  path: (process.env.NODE_ENV = prod ? ".env" : ".env.local"),
 });
 
 const app = express();
@@ -34,14 +37,13 @@ app.route("/api/articles").get(async (req, res) => {
 app.use(express.static("dist"));
 
 app.route("*").get(async (req, res) => {
-  console.log(__dirname);
   res.sendFile(path.join(__dirname, "..", "dist", "index.html"));
 });
 
 app.listen(process.env.PORT ?? 8000, () => {
   console.log(
-    `🌐 Server running at http${
-      process.env.NODE_ENV === "production" ? "s" : ""
-    }://${process.env.HOSTNAME ?? "localhost"}:${process.env.PORT ?? 8000}/`
+    `🌐 Server running at http://${process.env.HOSTNAME ?? "localhost"}:${
+      process.env.PORT ?? 8000
+    }/`
   );
 });

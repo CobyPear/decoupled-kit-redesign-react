@@ -30,7 +30,7 @@ export const Page = () => {
   };
 
   return (
-    <section className="mt-48 mx-auto bg-zinc-200 p-16">
+    <section className="flex flex-col mt-48 mx-auto bg-zinc-200 p-16">
       {data ? (
         <ArticleGridCards
           data={data}
@@ -38,9 +38,9 @@ export const Page = () => {
           FallbackComponent={Fallback}
         />
       ) : null}
-      <a className={`btn border-black text-black btn-outline`}>
-        See all articles
-      </a>
+        <a className={`btn border-black text-black btn-outline mx-auto mt-4`}>
+          See all articles
+        </a>
     </section>
   );
 };
