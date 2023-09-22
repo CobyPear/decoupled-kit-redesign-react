@@ -30,9 +30,9 @@ const ArticleCard = ({ content, articles }: ArticleCardProps) => {
       className={clsx(
         "card card-compact shadow-xl bg-white",
         "min-w-md max-w-md",
-        oneArticle && "lg:card-side lg:col-span-2",
+        oneArticle && "lg:max-xl:card-side lg:col-span-2",
         oddArticles &&
-          "last:lg:card-side last:lg:col-span-2 last:lg:min-w-fit last:lg:max-w-screen-md"
+          "last:lg:max-xl:card-side last:lg:max-xl:col-span-2 last:lg:max-xl:min-w-fit last:lg:max-xl:max-w-screen-md max-h-[480px] [&>figure>img]:last:lg:max-xl:aspect-square [&>figure>img]:last:lg:max-xl:max-w-lg"
       )}
     >
       <figure className="">
@@ -48,7 +48,7 @@ const ArticleCard = ({ content, articles }: ArticleCardProps) => {
           loading="lazy"
         />
       </figure>
-      <section className="card-body w-full">
+      <section className="card-body">
         <h2 className="text-black card-title">{content.title}</h2>
         <section className="card-actions h-full">
           <p className="my-4">

@@ -18,7 +18,7 @@ export const Grid = ({
         "flex flex-col",
         "flex-auto gap-4",
         "lg:grid lg:grid-cols-2",
-        `xl:grid-cols-${items === 3 ? 3 : 2}`,
+        items === 3 ? "xl:grid-cols-3" : "xl:grid-cols-2",
         "md:max-w-screen-lg lg:max-w-screen-xl mx-auto"
       )}
     >
