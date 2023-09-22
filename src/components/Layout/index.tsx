@@ -1,39 +1,60 @@
 import { Footer } from "@components/Footer";
 import { Header } from "@components/Header";
 import { Row } from "@components/Row";
+import { MenuOverlay } from "@components/MenuOverlay";
 import clsx from "clsx";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 export const Layout = ({ children }: { children: ReactNode }) => {
   const path = window.location.pathname;
-  console.log(path);
+
+  const [open, setOpen] = useState(false);
+  const handleModal = () => {
+    setOpen((prev) => !prev);
+  };
+
+  useEffect(() => {
+    const listener = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+      }
+    };
+    addEventListener("keydown", listener);
+    return () => removeEventListener("keydown", listener);
+  });
+  const navItems = [
+    ["Home", "/"],
+    ["Articles", "/articles"],
+    ["Pages", "/pages"],
+  ].map(([label, href], index) => (
+    <li className="mx-2 text-lg text-black" key={index}>
+      <a
+        className={clsx("link-hover", path.endsWith(href) && "font-bold")}
+        href={href}
+      >
+        {label}
+      </a>
+    </li>
+  ));
   return (
-    <Row type="flex" styles={["mx-auto max-w-full min-w-full min-h-screen flex-col"]}>
-      <header className="bg-white">
-        <Header>
-          <ul className="p-2 menu-vertical sm:menu-horizontal">
-            {[
-              ["Home", "/"],
-              ["Articles", "/articles"],
-              ["Pages", "/pages"],
-            ].map(([label, href], index) => (
-              <li className="px-2 text-lg text-black" key={index}>
-                <a
-                  className={clsx(
-                    "link-hover",
-                    path.endsWith(href) && "font-bold"
-                  )}
-                  href={href}
-                >
-                  {label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </Header>
-      </header>
-      <main>{children}</main>
-      <Footer></Footer>
+    <Row
+      type="flex"
+      styles={["mx-auto max-w-full min-w-full min-h-screen flex-col"]}
+    >
+      <MenuOverlay open={open} handleClose={handleModal}>
+        {navItems}
+      </MenuOverlay>
+      <div className="mx-auto max-w-full min-w-full absolute h-fit">
+        <header className="p-6">
+          <Header handleOpen={handleModal}>
+            <menu className="p-2 menu-vertical sm:menu-horizontal">
+              {navItems}
+            </menu>
+          </Header>
+        </header>
+        <main className="mx-auto">{children}</main>
+        <Footer></Footer>
+      </div>
     </Row>
   );
 };
