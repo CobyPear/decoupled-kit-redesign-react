@@ -1,4 +1,4 @@
-import { withGrid } from "@utils/Grid";
+import { withGrid } from "@components/Grid/withGrid";
 import clsx from "clsx";
 
 interface ArticleCardProps {
@@ -22,27 +22,22 @@ interface ArticleCardProps {
 }
 
 const ArticleCard = ({ content, articles }: ArticleCardProps) => {
-  // console.log(content, articles);
-  console.log(articles % 2);
+  const oneArticle = articles === 1;
+  const oddArticles = articles % 2 === 1;
+  console.log(oddArticles);
   return (
     <article
       className={clsx(
         "card card-compact shadow-xl bg-white",
-        articles === 1 && "lg:col-span-2 xl:col-span-3"
-        // articles % 2 === 0
-        //   ? "lg:last:even:col-span-1 xl:last:even:col-span-2"
-        //   : "lg:last:odd:col-span-2 xl:last:odd:col-span-3",
-        // articles % 3 === 0
-        //   ? "lg:last:odd:col-span-2 xl:last:odd:col-span-1  xl:last:even:col-span-2"
-        //   : "xl:last:even:col-span-3"
-        // "lg:last:odd:col-span-2 xl:even:last:col-span-4 xl:odd:last:col-span-1"
+        "min-w-md max-w-md",
+        oneArticle && "lg:card-side lg:col-span-2",
+        oddArticles &&
+          "last:lg:max-xl:card-side last:lg:max-xl:col-span-2 last:lg:min-w-fit last:lg:max-w-screen-md"
       )}
     >
-      <figure className="bg-blue-100">
+      <figure className="">
         <img
-          className="aspect-auto rounded-t-lg lg:w-fit"
-          width={385}
-          height={217}
+          className="aspect-auto"
           alt={
             content.field_media_image.field_media_image.resourceIdObjMeta.alt
           }
@@ -50,27 +45,19 @@ const ArticleCard = ({ content, articles }: ArticleCardProps) => {
             import.meta.env.VITE_BACKEND_URL +
             content.field_media_image.field_media_image.uri.url
           }
+          loading="lazy"
         />
       </figure>
-      <section className="card-body">
-        <h2 className="text-black card-title align-center">{content.title}</h2>
-        <section className="card-actions mt-auto block xs:flex justify-end">
-          {content.body.summary ? (
-            <p>{content.body.summary}</p>
-          ) : (
-            <p>
-              {
-                content.field_media_image.field_media_image.resourceIdObjMeta
-                  .alt
-              }
-            </p>
-          )}
-          <a
-            className={clsx(
-              "btn btn-xs xs:btn-sm sm:btn-md md:btn-lg",
-              "sm:ml-auto p-4"
-            )}
-          >
+      <section className="card-body w-full">
+        <h2 className="text-black card-title">{content.title}</h2>
+        <section className="card-actions h-full">
+          <p className="my-4">
+            {content.body.summary
+              ? content.body.summary
+              : content.field_media_image.field_media_image.resourceIdObjMeta
+                  .alt}
+          </p>
+          <a className="btn btn-sm ml-auto mt-auto w-24 h-10 font-light text-white capitalize">
             View
           </a>
         </section>

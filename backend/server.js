@@ -29,7 +29,8 @@ const store = new DrupalState({
 app.route("/api/articles").get(async (req, res) => {
   const articles = await store.getObject({
     objectName: "node--article",
-    params: "include=field_media_image.field_media_image",
+    // limit to 3 articles for now
+    params: "include=field_media_image.field_media_image&page[limit]=3",
   });
   return res.status(200).json(articles);
 });

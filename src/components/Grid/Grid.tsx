@@ -1,3 +1,4 @@
+import { clsx } from "clsx";
 /**
  * @param props.cols - The number of columns in the grid, this is an optional prop which will default to 3 if not provided
  * @param props.children - The JSX elements used as the content of the grid
@@ -10,10 +11,16 @@ export const Grid = ({
   items: number;
   children?: React.ReactNode;
 }) => {
-  console.log({items})
+  console.log({ items });
   return (
     <div
-      className={`flex flex-col lg:grid lg:grid-cols-${items} xl:grid-cols-3 flex-auto gap-4 md:max-w-screen-lg lg:max-w-screen-xl mx-auto`}
+      className={clsx(
+        "flex flex-col",
+        "flex-auto gap-4",
+        "lg:grid lg:grid-cols-2",
+        `xl:grid-cols-${items === 3 ? 3 : 2}`,
+        "md:max-w-screen-lg lg:max-w-screen-xl mx-auto"
+      )}
     >
       {children}
     </div>
