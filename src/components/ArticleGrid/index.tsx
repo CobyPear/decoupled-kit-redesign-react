@@ -35,7 +35,7 @@ const ArticleCard = ({ content, articles }: ArticleCardProps) => {
           "last:lg:card-side last:lg:col-span-2 last:lg:min-w-fit last:lg:max-w-screen-md"
       )}
     >
-      <figure className="">
+      <figure>
         <img
           className="aspect-auto"
           alt={
