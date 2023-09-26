@@ -44,7 +44,12 @@ export const Layout = ({ children }: { children: ReactNode }) => {
       <MenuOverlay open={open} handleClose={handleModal}>
         {navItems}
       </MenuOverlay>
-      <div className="mx-auto max-w-full min-w-full absolute h-fit">
+      <div
+        className={clsx(
+          "transition-all ease-in delay-150  mx-auto max-w-full min-w-full absolute h-fit",
+          open && "overflow-y-hidden max-h-screen"
+        )}
+      >
         <header className="p-6">
           <Header handleOpen={handleModal}>
             <menu className="p-2 menu-vertical sm:menu-horizontal">
