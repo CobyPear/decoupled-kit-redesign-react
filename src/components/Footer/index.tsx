@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 export const Footer = ({ children }: { children?: ReactNode }) => {
   return (
-    <footer className="footer footer-center mt-24 bg-stone-700 text-white">
+    <footer className="footer footer-center mt-auto bg-stone-700 text-white">
       <aside>
         <figure className="mt-16">
           <img width="118" height="118" src="/pantheon-fist-wht.png" />

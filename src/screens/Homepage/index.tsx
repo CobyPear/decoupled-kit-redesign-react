@@ -1,4 +1,5 @@
 import { ArticleGridCards } from "@components/ArticleGrid";
+import { Row } from "@components/Row";
 import { API } from "@lib/API";
 import * as JSONAPI from "jsonapi-typescript";
 import { useEffect, useState } from "react";
@@ -37,9 +38,9 @@ export const Page = () => {
   };
 
   return (
-    <div>
-      <form>
-        <label className="block" htmlFor="select">
+    <Row options={{ type: "flex" }}>
+      <form className="py-14">
+        <label className="" htmlFor="select">
           Select number of articles to show:
         </label>
         <select id="select" value={numArticles} onChange={updateNumArticles}>
@@ -49,13 +50,16 @@ export const Page = () => {
         </select>
       </form>
 
-      <section className="flex flex-col mt-48 mx-auto bg-zinc-200 p-4 sm:p-16">
+      <Row options={{ type: "flex", styles: ["bg-neutral-200"] }}>
         {data ? (
           <ArticleGridCards data={data} articles={data.length} />
         ) : (
-          <span className="loading loading-spinner loading-lg mx-auto mt-48"></span>
+          <span className=""></span>
         )}
-      </section>
-    </div>
+        <a className={`btn border-black text-black btn-outline mx-auto mt-16`}>
+          See all articles
+        </a>
+      </Row>
+    </Row>
   );
 };

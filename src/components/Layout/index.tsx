@@ -7,12 +7,12 @@ export const Layout = ({ children }: { children: ReactNode }) => {
   const path = window.location.pathname;
   console.log(path);
   return (
-    <div className="mx-auto max-w-full min-w-full absolute h-fit">
-      <header className="p-6">
+    <div className="mx-auto max-w-full min-w-full min-h-screen flex flex-col">
+      <header className="bg-white rounded-b-lg">
       <Header>
         <ul className="p-2 menu-vertical sm:menu-horizontal">
           {[["Home", '/'], ["Articles", '/articles'], ["Pages", '/pages']].map(([label, href], index) => (
-            <li className="mx-2 text-lg text-black" key={index}>
+            <li className="px-2 text-lg text-black" key={index}>
               <a
                 className={clsx(
                   "link-hover",
@@ -27,7 +27,7 @@ export const Layout = ({ children }: { children: ReactNode }) => {
         </ul>
       </Header>
       </header>
-      <main className="mx-auto">{children}</main>
+      <main className="min-h-screen-2xl">{children}</main>
       <Footer></Footer>
     </div>
   );
