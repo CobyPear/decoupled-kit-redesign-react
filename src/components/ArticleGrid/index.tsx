@@ -37,23 +37,24 @@ const ArticleCard = ({ content, articles }: ArticleCardProps) => {
   return (
     <article
       className={clsx(
-        "card card-compact shadow-xl bg-white lg:col-span-8 w-ull",
+        "card card-compact shadow-xl bg-white",
         oneArticle
-          ? `col-span-4 sm:col-start-2 sm:col-span-6 sm:card-side lg:col-start-1 lg:col-span-8`
-          : "col-span-4 sm:col-span-3 sm:first:col-start-2 lg:col-span-2",
+          ? `col-span-4 sm:col-start-2 sm:col-span-6 sm:card-side lg:col-start-1 lg:col-span-12`
+          : "col-span-4 sm:col-span-3 sm:first:col-start-2 lg:first:col-start-1 lg:col-span-4",
         oneArticle && [
-          figure("sm:w-1/2"),
-          section("sm:w-1/2"),
-          // "[&>section]:sm:w-1/2",
-          // section("col-span-4"),
-          // figure("col-span-4", "aspect-square"),
-          // "[&>figure>img]:h-full",
+          figure("sm:max-w-1/2"),
           figureImage("h-full"),
+          section("sm:max-w-1/2"),
         ],
         oddArticles &&
-          `last:sm:card-side last:sm:col-span-6 last:sm:col-start-2 last:lg:card last:lg:col-span-2`, //[&>section]:last:sm:w-1/2 [&>section]:last:lg:w-full`,
+          `last:sm:card-side last:sm:col-span-6 last:sm:col-start-2 last:lg:card last:lg:col-span-4`, //[&>section]:last:sm:w-1/2 [&>section]:last:lg:w-full`,
         // oddArticles && sideImage,
-        ""
+        oddArticles && [
+          figure("last:sm:max-md:w-1/2"),
+          figureImage("h-full"),
+          section("last:sm:max-md:w-1/2"),
+          // "[&>figure>img]:h-full"
+        ]
         // "min-w-md max-w-m",
         // oneArticle && "card card-side",
         // oneArticle && "card card-side col-start-4 col-span-6",
@@ -79,8 +80,8 @@ const ArticleCard = ({ content, articles }: ArticleCardProps) => {
         // ]
       )}
     >
-      <figure>
-        <img
+      <figure className="max-w-1/2">
+        <img className="max-w-1/2"
           alt={
             content.field_media_image.field_media_image.resourceIdObjMeta.alt
           }
@@ -93,7 +94,7 @@ const ArticleCard = ({ content, articles }: ArticleCardProps) => {
       </figure>
       <section className="card-body">
         <h2 className="text-black card-title">{content.title}</h2>
-        <section className="card-actions flex-col flex-grow mb-auto p-2">
+        <section className="card-actions flex-col flex-shrink mb-auto p-2">
           <p className="my-4">
             {content.body.summary ? content.body.summary : null}
           </p>
