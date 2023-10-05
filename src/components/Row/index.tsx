@@ -20,9 +20,16 @@ export const Row = ({
       "sm:grid-cols-8 sm:mx-6",
       "lg:grid-cols-12 lg:mx-12"
     );
-  const detailedOptions = gridOptions ? gridOptions : "flex-col";
+  const detailedOptions = gridOptions ? gridOptions : "flex-col flex-1";
   return (
-    <section className={clsx(options.type, detailedOptions, options.styles)}>
+    <section
+      className={clsx(
+        options.type,
+        detailedOptions,
+        options.styles,
+        "max-w-[1738px] mx-auto"
+      )}
+    >
       {children}
     </section>
   );

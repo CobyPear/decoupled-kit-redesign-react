@@ -28,20 +28,32 @@ interface ArticleCardProps {
 
 const ArticleCard = ({ content, articles }: ArticleCardProps) => {
   const oneArticle = articles === 1;
-  const oddArticles = articles % 2 === 1;
+  const oddArticles = !oneArticle && articles % 2 === 1;
 
-  const lastLgMaxXl = createSelector("last:lg:max-xl", "last");
-  const lastImage = createSelector("[&>figure>img]");
-  const image = createSelector("[&>figure>img]");
-  console.log(lastImage("hi"), lastLgMaxXl("test"));
-  // console.log("lastLgMaxXl", lastLgMaxXl("card-side", "col-span-2"));
-  // console.log(lastImage("aspect-square"));
+  const figure = createSelector("[&>figure]");
+  const section = createSelector("[&>section]");
+  const figureImage = createSelector("[&>figure>img]");
+
   return (
     <article
       className={clsx(
-        "card card-compact shadow-xl bg-white max-h-[554px]",
-        oneArticle && "card-side col-span-4 sm:col-start-2 sm:col-span-6 lg:col-start-3 lg:col-span-8",
-        oneArticle && image("aspect-square"),
+        "card card-compact shadow-xl bg-white lg:col-span-8 w-ull",
+        oneArticle
+          ? `col-span-4 sm:col-start-2 sm:col-span-6 sm:card-side lg:col-start-1 lg:col-span-8`
+          : "col-span-4 sm:col-span-3 sm:first:col-start-2 lg:col-span-2",
+        oneArticle && [
+          figure("sm:w-1/2"),
+          section("sm:w-1/2"),
+          // "[&>section]:sm:w-1/2",
+          // section("col-span-4"),
+          // figure("col-span-4", "aspect-square"),
+          // "[&>figure>img]:h-full",
+          figureImage("h-full"),
+        ],
+        oddArticles &&
+          `last:sm:card-side last:sm:col-span-6 last:sm:col-start-2 last:lg:card last:lg:col-span-2`, //[&>section]:last:sm:w-1/2 [&>section]:last:lg:w-full`,
+        // oddArticles && sideImage,
+        ""
         // "min-w-md max-w-m",
         // oneArticle && "card card-side",
         // oneArticle && "card card-side col-start-4 col-span-6",
@@ -67,9 +79,8 @@ const ArticleCard = ({ content, articles }: ArticleCardProps) => {
         // ]
       )}
     >
-      <figure className="w-1/2">
+      <figure>
         <img
-        className="h-full"
           alt={
             content.field_media_image.field_media_image.resourceIdObjMeta.alt
           }
@@ -80,16 +91,18 @@ const ArticleCard = ({ content, articles }: ArticleCardProps) => {
           loading="lazy"
         />
       </figure>
-      <section className="card-body w-1/2">
+      <section className="card-body">
         <h2 className="text-black card-title">{content.title}</h2>
-        <section className="card-actions h-full">
+        <section className="card-actions flex-col flex-grow mb-auto p-2">
           <p className="my-4">
-            {content.body.summary
-              ? content.body.summary
-              : content.field_media_image.field_media_image.resourceIdObjMeta
-                  .alt}
+            {content.body.summary ? content.body.summary : null}
           </p>
-          <Button Element="a" size="large" styles="capitalize" href={content.path.alias}>
+          <Button
+            Element="a"
+            size="large"
+            styles="capitalize"
+            href={content.path.alias}
+          >
             View
           </Button>
         </section>

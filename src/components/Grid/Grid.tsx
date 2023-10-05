@@ -18,10 +18,11 @@ export const Grid = ({
       options={{
         type: "grid",
         styles: clsx(
-          "grid-cols-4 gap-6 py-12 px-2",
-          "sm:grid-cols-6",
-          "md:grid-cols-8",
-          "lg:grid-cols-12",
+          "lg:grid-cols-8",
+          // "grid-cols-4 gap-6 py-12 px-2",
+          // "sm:grid-cols-6",
+          // "md:grid-cols-8",
+          // "lg:grid-cols-12",
           // items === 3 ? "xl:grid-cols-3" : "xl:grid-cols-2"
           // "md:max-w-screen-lg lg:max-w-screen-xl mx-auto"
           // "grid grid-cols-12",

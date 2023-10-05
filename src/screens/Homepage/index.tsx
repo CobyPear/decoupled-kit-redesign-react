@@ -38,28 +38,35 @@ export const Page = () => {
   };
 
   return (
-    <Row options={{ type: "flex" }}>
-      <form className="py-14">
-        <label className="" htmlFor="select">
-          Select number of articles to show:
-        </label>
-        <select id="select" value={numArticles} onChange={updateNumArticles}>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-        </select>
-      </form>
-
-      <Row options={{ type: "flex", styles: ["bg-neutral-200"] }}>
-        {data ? (
-          <ArticleGridCards data={data} articles={data.length} />
-        ) : (
-          <span className=""></span>
-        )}
-        <a className={`btn border-black text-black btn-outline mx-auto mt-16`}>
-          See all articles
-        </a>
+    <>
+      <Row options={{ type: "flex" }}>
+        <form className="py-14">
+          <label className="" htmlFor="select">
+            Select number of articles to show:
+          </label>
+          <select id="select" value={numArticles} onChange={updateNumArticles}>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </form>
       </Row>
-    </Row>
+
+      {/* full width bg needs to wrap the Row */}
+      <div className="bg-neutral-200 w-full">
+        <Row options={{ type: "flex" }}>
+          {data ? (
+            <ArticleGridCards data={data} articles={data.length} />
+          ) : (
+            <span className=""></span>
+          )}
+          <a
+            className={`btn border-black text-black btn-outline mx-auto mt-16`}
+          >
+            See all articles
+          </a>
+        </Row>
+      </div>
+    </>
   );
 };
