@@ -36,9 +36,15 @@ app.route("/api/articles").get(async (req, res) => {
 });
 
 app.use(express.static("dist"));
+app.use(express.static("storybook-static"));
+
+// app.route("/storybook/*").get(async (req, res) => {});
 
 app.route("*").get(async (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "dist", "index.html"));
+  if (req.url.startsWith("/storybook")) {
+    return res.sendFile(path.join(__dirname, "..", "storybook-static", "index.html"));
+  }
+  return res.sendFile(path.join(__dirname, "..", "dist", "index.html"));
 });
 
 app.listen(process.env.PORT ?? 8000, () => {

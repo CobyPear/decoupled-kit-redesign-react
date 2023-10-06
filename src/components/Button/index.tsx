@@ -8,19 +8,17 @@ interface ButtonOptions<Props> {
   Element?: "button" | "a";
   type?: "primary" | "secondary" | "icon";
   size?: "small" | "large";
-  icon?: string;
   /**
    * extra styles
    */
   styles?: string | string[];
-  children?: ReactNode;
+  children?: ReactNode
   props?: Props;
 }
 export const Button = <Props,>({
   Element = "button",
   type = "primary",
   size,
-  icon,
   styles,
   children,
   ...props
