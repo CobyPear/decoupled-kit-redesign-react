@@ -1,3 +1,4 @@
+import { Button } from "@components/Button";
 import { withGrid } from "@components/Grid/withGrid";
 import { createSelector } from "@lib/createSelector";
 import clsx from "clsx";
@@ -17,6 +18,9 @@ interface ArticleCardProps {
           url: string;
         };
       };
+    };
+    path: {
+      alias: string;
     };
   };
   articles: number;
@@ -81,9 +85,9 @@ const ArticleCard = ({ content, articles }: ArticleCardProps) => {
               : content.field_media_image.field_media_image.resourceIdObjMeta
                   .alt}
           </p>
-          <a className="btn btn-sm ml-auto mt-auto w-24 h-10 font-light text-white capitalize">
+          <Button Element="a" size="large" styles="capitalize" href={content.path.alias}>
             View
-          </a>
+          </Button>
         </section>
       </section>
     </article>

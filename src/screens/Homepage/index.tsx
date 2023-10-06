@@ -39,7 +39,9 @@ export const Page = () => {
   return (
     <div>
       <form>
-        <label className="block" htmlFor="select">Select number of articles to show:</label>
+        <label className="block" htmlFor="select">
+          Select number of articles to show:
+        </label>
         <select id="select" value={numArticles} onChange={updateNumArticles}>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -53,9 +55,6 @@ export const Page = () => {
         ) : (
           <span className="loading loading-spinner loading-lg mx-auto mt-48"></span>
         )}
-        <a className={`btn border-black text-black btn-outline mx-auto mt-16`}>
-          See all articles
-        </a>
       </section>
     </div>
   );
