@@ -21,9 +21,7 @@ app.use(
 );
 
 const store = new DrupalState({
-  apiBase:
-    process.env.VITE_BACKEND_URL ||
-    `https://${process.env.PANTHEON_CMS_ENDPOINT}`,
+  apiBase: process.env.VITE_BACKEND_URL,
 });
 
 app.route("/api/articles").get(async (req, res) => {
@@ -42,7 +40,9 @@ app.use(express.static("storybook-static"));
 
 app.route("*").get(async (req, res) => {
   if (req.url.startsWith("/storybook")) {
-    return res.sendFile(path.join(__dirname, "..", "storybook-static", "index.html"));
+    return res.sendFile(
+      path.join(__dirname, "..", "storybook-static", "index.html")
+    );
   }
   return res.sendFile(path.join(__dirname, "..", "dist", "index.html"));
 });
