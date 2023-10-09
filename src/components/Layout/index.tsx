@@ -8,12 +8,7 @@ export const Layout = ({ children }: { children: ReactNode }) => {
   const path = window.location.pathname;
   console.log(path);
   return (
-    <Row
-      options={{
-        type: "flex",
-        styles: ["mx-auto max-w-full min-w-full min-h-screen"],
-      }}
-    >
+    <Row type="flex" styles={["mx-auto max-w-full min-w-full min-h-screen flex-col"]}>
       <header className="bg-white">
         <Header>
           <ul className="p-2 menu-vertical sm:menu-horizontal">

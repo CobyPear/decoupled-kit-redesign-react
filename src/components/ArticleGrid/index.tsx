@@ -28,6 +28,7 @@ interface ArticleCardProps {
 
 const ArticleCard = ({ content, articles }: ArticleCardProps) => {
   const oneArticle = articles === 1;
+  const twoArticles = articles === 2;
   const oddArticles = !oneArticle && articles % 2 === 1;
 
   const figure = createSelector("[&>figure]");
@@ -39,7 +40,8 @@ const ArticleCard = ({ content, articles }: ArticleCardProps) => {
       className={clsx(
         "card card-compact shadow-xl bg-white",
         oneArticle
-          ? `col-span-4 sm:col-start-2 sm:col-span-6 sm:card-side lg:col-start-1 lg:col-span-12`
+          ? `col-span-4 sm:col-start-2 sm:col-span-6 sm:card-side lg:col-start-3 lg:col-span-12`
+          : twoArticles ? "col-span-4 sm-col-span-3 sm:first:col-start-1 lg:first:col-start-3"
           : "col-span-4 sm:col-span-3 sm:first:col-start-2 lg:first:col-start-1 lg:col-span-4",
         oneArticle && [
           figure("sm:max-w-1/2"),

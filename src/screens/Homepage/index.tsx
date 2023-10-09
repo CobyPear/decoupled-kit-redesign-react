@@ -39,7 +39,7 @@ export const Page = () => {
 
   return (
     <>
-      <Row options={{ type: "flex" }}>
+      <Row type="flex">
         <form className="py-14">
           <label className="" htmlFor="select">
             Select number of articles to show:
@@ -54,7 +54,7 @@ export const Page = () => {
 
       {/* full width bg needs to wrap the Row */}
       <div className="bg-neutral-200 w-full">
-        <Row options={{ type: "flex" }}>
+        <Row type="flex" styles="flex-col">
           {data ? (
             <ArticleGridCards data={data} articles={data.length} />
           ) : (

@@ -15,20 +15,18 @@ export const Grid = ({
   console.log({ items });
   return (
     <Row
-      options={{
-        type: "grid",
-        styles: clsx(
-          // "lg:grid-cols-12",
-          // "grid-cols-4 gap-6 py-12 px-2",
-          // "sm:grid-cols-6",
-          // "md:grid-cols-8",
-          // "lg:grid-cols-12",
-          // items === 3 ? "xl:grid-cols-3" : "xl:grid-cols-2"
-          // "md:max-w-screen-lg lg:max-w-screen-xl mx-auto"
-          // "grid grid-cols-12",
-          // "max-w-screen-sm mx-auto",
-        ),
-      }}
+      type="grid"
+      // styles={clsx(
+      // "lg:grid-cols-12",
+      // "grid-cols-4 gap-6 py-12 px-2",
+      // "sm:grid-cols-6",
+      // "md:grid-cols-8",
+      // "lg:grid-cols-12",
+      // items === 3 ? "xl:grid-cols-3" : "xl:grid-cols-2"
+      // "md:max-w-screen-lg lg:max-w-screen-xl mx-auto"
+      // "grid grid-cols-12",
+      // "max-w-screen-sm mx-auto",
+      // )}
     >
       {children}
     </Row>
