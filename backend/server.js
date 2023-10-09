@@ -8,9 +8,11 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 const prod = process.env.NODE_ENV === "production";
 
-dotenv.config({
-  path: (process.env.NODE_ENV = prod ? ".env" : ".env.local"),
-});
+if (!prod) {
+  dotenv.config({
+    path: ".env.local",
+  });
+}
 
 const app = express();
 
@@ -20,8 +22,12 @@ app.use(
   })
 );
 
+console.log("BACKEND_URL", process.env.VITE_BACKEND_URL);
+console.log("PANTHEON_CMS", process.env.PANTHEON_CMS_ENDPOINT);
 const store = new DrupalState({
-  apiBase: process.env.VITE_BACKEND_URL,
+  apiBase:
+    process.env.VITE_BACKEND_URL ||
+    `https://${process.env.PANTHEON_CMS_ENDPOINT}`,
 });
 
 app.route("/api/articles").get(async (req, res) => {
