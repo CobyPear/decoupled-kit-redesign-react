@@ -14,8 +14,8 @@ interface RowOptions {
 export const Row = ({
   type,
   styles,
-  children,
   flexOptions: { direction, wrap } = { direction: "row", wrap: false },
+  children,
 }: RowOptions) => {
   const gridOptions =
     type === "grid" &&
@@ -29,7 +29,7 @@ export const Row = ({
     : clsx(`flex-${direction}`, wrap && "flex-wrap");
   return (
     <section
-      className={clsx(type, detailedOptions, styles, "max-w-[1738px] mx-auto")}
+      className={clsx(type, detailedOptions, styles, "max-w-[1738px]")}
     >
       {children}
     </section>

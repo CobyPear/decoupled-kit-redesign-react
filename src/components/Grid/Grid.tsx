@@ -1,5 +1,4 @@
 import { Row } from "@components/Row";
-import { clsx } from "clsx";
 /**
  * @param props.cols - The number of columns in the grid, this is an optional prop which will default to 3 if not provided
  * @param props.children - The JSX elements used as the content of the grid

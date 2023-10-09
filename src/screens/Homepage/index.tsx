@@ -53,8 +53,8 @@ export const Page = () => {
       </Row>
 
       {/* full width bg needs to wrap the Row */}
-      <div className="bg-neutral-200 w-full">
-        <Row type="flex" styles="flex-col">
+      <div className="bg-neutral-200">
+        <Row type="flex" styles="flex-col mx-auto">
           {data ? (
             <ArticleGridCards data={data} articles={data.length} />
           ) : (
