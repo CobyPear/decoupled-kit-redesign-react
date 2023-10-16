@@ -32,64 +32,25 @@ const ArticleCard = ({ content, articles }: ArticleCardProps) => {
   const twoArticles = articles === 2;
   const oddArticles = !oneArticle && articles % 2 === 1;
 
-  const figure = createSelector("[&>figure]");
-  const section = createSelector("[&>section]");
-  const figureImage = createSelector("[&>figure>img]");
+  const SHARED_STYLES = "card card-compact shadow-xl bg-white";
+  const ONE_ARTICLE_STYLES =
+    "col-span-4 sm:col-start-2 sm:col-span-6 sm:card-side lg:col-start-3 lg:col-span-8 lg:grid lg:grid-cols-8 [&>figure]:sm:max-w-1/2 [&>figure]:lg:col-span-4 [&>figure>img]:h-full [&>section]:lg:col-span-4";
+  const TWO_ARTICLES_STYLES =
+    "col-span-4 sm-col-span-3 sm:first:col-start-1 lg:first:col-start-3";
+  const ODD_NUM_ARTICLES_STYLES =
+    "col-span-4 sm:col-span-3 sm:first:col-start-2 lg:first:col-start-1 lg:col-span-4 last:sm:card-side last:sm:col-span-6 last:sm:col-start-2 last:lg:card last:lg:col-span-4 last:sm:max-lg:grid last:sm:max-lg:grid-cols-4 [&>section]:last:sm:max-lg:col-span-2 [&>figure]:last:sm:max-lg:col-span-2 [&>figure]:lg:col-span-2 [&>figure>img]:h-full [&>section]:lg:col-span-2";
 
   return (
     <article
-      className={twMerge(
-        clsx(
-          "card card-compact shadow-xl bg-white",
-          oneArticle
-            ? `col-span-4 sm:col-start-2 sm:col-span-6 sm:card-side lg:col-start-3 lg:col-span-8 lg:grid lg:grid-cols-8 ${figure(
-                "lg:col-span-4"
-              )} ${section("lg:col-span-4")}`
-            : twoArticles
-            ? "col-span-4 sm-col-span-3 sm:first:col-start-1 lg:first:col-start-3 "
-            : "col-span-4 sm:col-span-3 sm:first:col-start-2 lg:first:col-start-1 lg:col-span-4",
-          oneArticle && [
-            figure("sm:max-w-1/2", "lg:col-span-4"),
-            figureImage("h-full"),
-            section("sm:max-w-1/2", "lg:col-span-4"),
-          ],
-          oddArticles &&
-          `last:sm:card-side last:sm:col-span-6 last:sm:col-start-2 last:lg:card last:lg:col-span-4 last:sm:max-lg:grid last:sm:max-lg:grid-cols-4 [&>section]:last:sm:max-lg:col-span-2 [&>figure]:last:sm:max-lg:col-span-2`, //[&>section]:last:sm:w-1/2 [&>section]:last:lg:w-full`,
-          oddArticles && [
-            figure("last:sm:max-md:w-1/2", "last:sm:max-lg:col-span-2"),
-            figureImage("h-full"),
-            section("last:sm:max-md:w-1/2", "last:sm:max-lg:col-span-2"),
-            // "[&>figure>img]:h-full"
-          ]
-        )
-        // "min-w-md max-w-m",
-        // oneArticle && "card card-side",
-        // oneArticle && "card card-side col-start-4 col-span-6",
-        // oddArticles &&
-        //   "last:lg:max-xl:card-side last:lg:max-xl:col-span-2 last:lg:max-xl:min-w-fit last:lg:max-xl:max-w-screen-md max-h-[480px] [&>figure>img]:last:lg:max-xl:aspect-square [&>figure>img]:last:lg:max-xl:max-w-lg",
-        // OR:
-        // oddArticles && [
-        //   lastLgMaxXl(
-        //     "card-side",
-        //     "col-span-2",
-        //     "min-w-fit",
-        //     "max-w-screen-md",
-        //     "max-h-[480px]",
-        //     "text-start"
-        //   ),
-        //   lastImage("aspect-square"),
-        //   // OR:
-        //   // lastLgMaxXl("col-span-2"),
-        //   // lastLgMaxXl("min-w-fit"),
-        //   // etc...
-        //   // lastImage("aspect-square"),
-        //   // etc...
-        // ]
+      className={clsx(
+        SHARED_STYLES,
+        oneArticle && ONE_ARTICLE_STYLES,
+        twoArticles && TWO_ARTICLES_STYLES,
+        oddArticles && ODD_NUM_ARTICLES_STYLES
       )}
     >
       <figure>
         <img
-          // className="w-fit"
           alt={
             content.field_media_image.field_media_image.resourceIdObjMeta.alt
           }
