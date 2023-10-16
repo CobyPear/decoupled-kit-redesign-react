@@ -2,6 +2,7 @@ import { Button } from "@components/Button";
 import { withGrid } from "@components/Grid/withGrid";
 import { createSelector } from "@lib/createSelector";
 import clsx from "clsx";
+import { twMerge } from "tailwind-merge";
 
 interface ArticleCardProps {
   content: {
@@ -37,26 +38,30 @@ const ArticleCard = ({ content, articles }: ArticleCardProps) => {
 
   return (
     <article
-      className={clsx(
-        "card card-compact shadow-xl bg-white",
-        oneArticle
-          ? `col-span-4 sm:col-start-2 sm:col-span-6 sm:card-side lg:col-start-3 lg:col-span-12`
-          : twoArticles ? "col-span-4 sm-col-span-3 sm:first:col-start-1 lg:first:col-start-3"
-          : "col-span-4 sm:col-span-3 sm:first:col-start-2 lg:first:col-start-1 lg:col-span-4",
-        oneArticle && [
-          figure("sm:max-w-1/2"),
-          figureImage("h-full"),
-          section("sm:max-w-1/2"),
-        ],
-        oddArticles &&
-          `last:sm:card-side last:sm:col-span-6 last:sm:col-start-2 last:lg:card last:lg:col-span-4`, //[&>section]:last:sm:w-1/2 [&>section]:last:lg:w-full`,
-        // oddArticles && sideImage,
-        oddArticles && [
-          figure("last:sm:max-md:w-1/2"),
-          figureImage("h-full"),
-          section("last:sm:max-md:w-1/2"),
-          // "[&>figure>img]:h-full"
-        ]
+      className={twMerge(
+        clsx(
+          "card card-compact shadow-xl bg-white",
+          oneArticle
+            ? `col-span-4 sm:col-start-2 sm:col-span-6 sm:card-side lg:col-start-3 lg:col-span-8 lg:grid lg:grid-cols-8 ${figure(
+                "lg:col-span-4"
+              )} ${section("lg:col-span-4")}`
+            : twoArticles
+            ? "col-span-4 sm-col-span-3 sm:first:col-start-1 lg:first:col-start-3 "
+            : "col-span-4 sm:col-span-3 sm:first:col-start-2 lg:first:col-start-1 lg:col-span-4",
+          oneArticle && [
+            figure("sm:max-w-1/2", "lg:col-span-4"),
+            figureImage("h-full"),
+            section("sm:max-w-1/2", "lg:col-span-4"),
+          ],
+          oddArticles &&
+          `last:sm:card-side last:sm:col-span-6 last:sm:col-start-2 last:lg:card last:lg:col-span-4 last:sm:max-lg:grid last:sm:max-lg:grid-cols-4 [&>section]:last:sm:max-lg:col-span-2 [&>figure]:last:sm:max-lg:col-span-2`, //[&>section]:last:sm:w-1/2 [&>section]:last:lg:w-full`,
+          oddArticles && [
+            figure("last:sm:max-md:w-1/2", "last:sm:max-lg:col-span-2"),
+            figureImage("h-full"),
+            section("last:sm:max-md:w-1/2", "last:sm:max-lg:col-span-2"),
+            // "[&>figure>img]:h-full"
+          ]
+        )
         // "min-w-md max-w-m",
         // oneArticle && "card card-side",
         // oneArticle && "card card-side col-start-4 col-span-6",
@@ -82,8 +87,9 @@ const ArticleCard = ({ content, articles }: ArticleCardProps) => {
         // ]
       )}
     >
-      <figure className="max-w-1/2">
-        <img className="max-w-1/2"
+      <figure>
+        <img
+          // className="w-fit"
           alt={
             content.field_media_image.field_media_image.resourceIdObjMeta.alt
           }

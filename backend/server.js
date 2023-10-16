@@ -42,7 +42,6 @@ app.route("/api/articles").get(async (req, res) => {
 app.use(express.static("dist"));
 app.use(express.static("storybook-static"));
 
-// app.route("/storybook/*").get(async (req, res) => {});
 
 app.route("*").get(async (req, res) => {
   if (req.url.startsWith("/storybook")) {
