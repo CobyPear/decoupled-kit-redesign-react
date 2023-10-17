@@ -1,8 +1,6 @@
 import { Button } from "@components/Button";
 import { withGrid } from "@components/Grid/withGrid";
-import { createSelector } from "@lib/createSelector";
 import clsx from "clsx";
-import { twMerge } from "tailwind-merge";
 
 interface ArticleCardProps {
   content: {
