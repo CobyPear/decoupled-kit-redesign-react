@@ -31,12 +31,51 @@ const ArticleCard = ({ content, articles }: ArticleCardProps) => {
   const oddArticles = !oneArticle && articles % 2 === 1;
 
   const SHARED_STYLES = "card card-compact shadow-xl bg-white max-h-[554px]";
-  const ONE_ARTICLE_STYLES =
-    "col-span-4 sm:col-start-2 sm:col-span-6 sm:card-side lg:col-start-3 lg:col-span-8 sm:grid sm:grid-cols-8 sm:h-[351px] [&>figure]:sm:max-w-1/2 [&>figure]:sm:col-span-4 [&>figure>img]:sm:aspect-square [&>figure>img]:sm:h-full [&>section]:sm:col-span-4";
+  const ONE_ARTICLE_STYLES = `col-span-4
+    sm:col-start-2
+    sm:col-span-6
+    sm:card-side
+    sm:grid
+    sm:gap-6
+    sm:grid-cols-2
+    sm:h-[351px]
+
+    lg:col-start-3
+    lg:col-span-8
+    
+    [&>figure]:sm:max-w-1/2
+    [&>figure]:sm:col-span-1
+
+    [&>figure>img]:sm:aspect-square
+    [&>figure>img]:sm:h-full
+
+    [&>section]:sm:col-span-1
+    `;
   const TWO_ARTICLES_STYLES =
     "col-span-4 sm-col-span-3 sm:first:col-start-1 lg:first:col-start-3";
-  const ODD_NUM_ARTICLES_STYLES =
-    "col-span-4 sm:max-lg:col-span-3 sm:first:col-start-2 lg:first:col-start-1 lg:col-span-4 last:sm:max-lg:card-side last:sm:col-span-6 last:sm:col-start-2 last:lg:col-span-4 last:sm:max-lg:grid last:sm:max-lg:grid-cols-4 [&>figure>img]:last:sm:max-lg:aspect-square last:sm:max:lg:h-[351px] [&>section]:last:sm:max-lg:col-span-2 [&>figure]:last:sm:max-lg:col-span-2 [&>figure]:lg:col-span-2 [&>figure>img]:sm:max-lg:h-full [&>section]:lg:col-span-2";
+  const ODD_NUM_ARTICLES_STYLES = `
+    col-span-4
+
+    lg:first:col-start-1
+    lg:col-span-4
+
+    last:sm:max-lg:card-side
+    last:sm:col-span-8
+    last:lg:col-span-4
+    last:sm:max-lg:grid
+    last:sm:max-lg:gap-6
+    last:sm:max-lg:grid-cols-2
+    last:sm:max-lg:h-[351px]
+
+    [&>figure]:last:sm:max-lg:col-span-1
+    [&>figure]:lg:col-span-2
+    
+    [&>figure>img]:sm:max-lg:h-full
+    [&>figure>img]:last:sm:max-lg:aspect-square
+    
+    [&>section]:last:sm:max-lg:col-span-1
+    [&>section]:lg:col-span-2
+    `;
 
   return (
     <article
