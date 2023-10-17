@@ -30,13 +30,13 @@ const ArticleCard = ({ content, articles }: ArticleCardProps) => {
   const twoArticles = articles === 2;
   const oddArticles = !oneArticle && articles % 2 === 1;
 
-  const SHARED_STYLES = "card card-compact shadow-xl bg-white";
+  const SHARED_STYLES = "card card-compact shadow-xl bg-white max-h-[554px]";
   const ONE_ARTICLE_STYLES =
-    "col-span-4 sm:col-start-2 sm:col-span-6 sm:card-side lg:col-start-3 lg:col-span-8 lg:grid lg:grid-cols-8 [&>figure]:sm:max-w-1/2 [&>figure]:lg:col-span-4 [&>figure>img]:h-full [&>section]:lg:col-span-4";
+    "col-span-4 sm:col-start-2 sm:col-span-6 sm:card-side lg:col-start-3 lg:col-span-8 sm:grid sm:grid-cols-8 [&>figure]:sm:max-w-1/2 [&>figure]:sm:col-span-4 [&>figure>img]:h-full [&>section]:sm:col-span-4 [&:has(.card-side)]:bg-red-500 sm:h-[351px] xl:h-[441px]";
   const TWO_ARTICLES_STYLES =
     "col-span-4 sm-col-span-3 sm:first:col-start-1 lg:first:col-start-3";
   const ODD_NUM_ARTICLES_STYLES =
-    "col-span-4 sm:col-span-3 sm:first:col-start-2 lg:first:col-start-1 lg:col-span-4 last:sm:card-side last:sm:col-span-6 last:sm:col-start-2 last:lg:card last:lg:col-span-4 last:sm:max-lg:grid last:sm:max-lg:grid-cols-4 [&>section]:last:sm:max-lg:col-span-2 [&>figure]:last:sm:max-lg:col-span-2 [&>figure]:lg:col-span-2 [&>figure>img]:h-full [&>section]:lg:col-span-2";
+    "col-span-4 sm:max-lg:col-span-3 sm:first:col-start-2 lg:first:col-start-1 lg:col-span-4 last:sm:max-lg:card-side last:sm:col-span-6 last:sm:col-start-2 last:lg:col-span-4 last:sm:max-lg:grid last:sm:max-lg:grid-cols-4 [&>section]:last:sm:max-lg:col-span-2 [&>figure]:last:sm:max-lg:col-span-2 [&>figure]:lg:col-span-2 [&>figure>img]:sm:max-lg:h-full [&>section]:lg:col-span-2";
 
   return (
     <article
@@ -61,7 +61,7 @@ const ArticleCard = ({ content, articles }: ArticleCardProps) => {
       </figure>
       <section className="card-body">
         <h2 className="text-black card-title">{content.title}</h2>
-        <section className="card-actions flex-col flex-shrink mb-auto p-2">
+        <section className="card-actions flex-col flex-grow  p-2">
           <p className="my-4">
             {content.body.summary ? content.body.summary : null}
           </p>

@@ -12,21 +12,9 @@ export const Footer = ({ children }: { children?: ReactNode }) => {
       </aside>
       <nav className="mb-16">
         <ul className="menu-horizontal">
-          {["Facebook", "Twitter", "YouTube"].map((item, index) => (
-            <li className="mx-2 text-lg" key={index}>
-              <a
-                className="link"
-                href={`https://${item.toLowerCase()}.com/getpantheon`}
-              >
-                <img
-                  src={`/${item.toLowerCase()}.svg`}
-                  alt={item}
-                  width="24"
-                  height="24"
-                />
-              </a>
-            </li>
-          ))}
+          <li>
+            <a className="link" href="/storybook-static/index.html">Storybook</a>
+          </li>
         </ul>
         <span>
           Built with
