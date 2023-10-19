@@ -29,7 +29,7 @@ export const Row = ({
     : clsx(`flex-${direction}`, wrap && "flex-wrap");
   return (
     <section
-      className={clsx(type, detailedOptions, styles, "max-w-[1738px]")}
+      className={clsx(type, detailedOptions, styles, "max-w-screen-2xl")}
     >
       {children}
     </section>

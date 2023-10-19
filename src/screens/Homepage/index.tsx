@@ -53,18 +53,13 @@ export const Page = () => {
       </Row>
 
       {/* full width bg needs to wrap the Row */}
-      <div className="bg-neutral-200">
+      <div className="bg-neutral-200 py-32">
         <Row type="flex" styles="flex-col mx-auto">
           {data ? (
             <ArticleGridCards data={data} articles={data.length} />
           ) : (
             <span className=""></span>
           )}
-          <a
-            className={`btn border-black text-black btn-outline mx-auto mt-16`}
-          >
-            See all articles
-          </a>
         </Row>
       </div>
     </>
