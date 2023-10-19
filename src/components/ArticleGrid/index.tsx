@@ -1,5 +1,5 @@
 import { Button } from "@components/Button";
-import { withGrid } from "@components/Grid/withGrid";
+import { withGrid } from "@components/GridHOC/withGrid";
 import clsx from "clsx";
 
 interface ArticleCardProps {

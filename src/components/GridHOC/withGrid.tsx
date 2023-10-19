@@ -1,4 +1,4 @@
-import { Grid } from "@components/Grid/Grid";
+import { Row } from "@components/Row";
 
 /**
  *
@@ -54,7 +54,7 @@ export const withGrid = <Props,>(Component: React.ComponentType<Props>) => {
     return (
       <>
         {data ? (
-          <Grid>
+          <Row type="grid">
             {data.map((content, i) => {
               return (
                 <Component
@@ -66,7 +66,7 @@ export const withGrid = <Props,>(Component: React.ComponentType<Props>) => {
                 />
               );
             })}
-          </Grid>
+          </Row>
         ) : FallbackComponent ? (
           <FallbackComponent />
         ) : null}
