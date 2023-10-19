@@ -54,7 +54,7 @@ export const withGrid = <Props,>(Component: React.ComponentType<Props>) => {
     return (
       <>
         {data ? (
-          <Grid items={data.length}>
+          <Grid>
             {data.map((content, i) => {
               return (
                 <Component
