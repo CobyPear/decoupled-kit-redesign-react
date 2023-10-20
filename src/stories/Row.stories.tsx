@@ -37,7 +37,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const TestChildren = ({ items = 12 }: { items?: number }) => {
+const TestChildren = ({ items = 16 }: { items?: number }) => {
   const itemArray = Array.from(Array(items).keys());
   return (
     <>

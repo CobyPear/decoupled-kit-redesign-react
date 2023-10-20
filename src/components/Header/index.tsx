@@ -1,3 +1,4 @@
+import { Button } from "@components/Button";
 import type { ReactNode } from "react";
 
 export const Header = ({
@@ -8,7 +9,7 @@ export const Header = ({
   children?: ReactNode;
 }) => {
   return (
-    <nav className="navbar max-w-[1738px] mx-auto z-10">
+    <nav className="navbar max-w-[1920px] mx-auto z-10">
       <a href="/">
         <img
           src="/pantheon-fist-blk.png"
@@ -18,21 +19,35 @@ export const Header = ({
         />
       </a>
       <section className="hidden sm:flex">{children}</section>
-      <button onClick={handleOpen} className="ml-auto mr-8 sm:hidden">
+      <Button type="icon" onClick={handleOpen} styles="ml-auto mr-8 sm:hidden">
         <svg
-          xmlns="http://www.w3.org/2000/svg"
+          width="40"
+          height="40"
+          viewBox="0 0 40 40"
           fill="none"
-          viewBox="0 0 24 24"
-          className="inline-block w-5 h-5 stroke-current"
+          xmlns="http://www.w3.org/2000/svg"
         >
+          <circle cx="20" cy="20" r="20" fill="white" />
           <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M4 6h16M4 12h16M4 18h16"
-          ></path>
+            d="M9 12H31"
+            stroke="#171717"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+          <path
+            d="M9 20H31"
+            stroke="#171717"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+          <path
+            d="M9 28L31 28"
+            stroke="#171717"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
         </svg>
-      </button>
+      </Button>
     </nav>
   );
 };

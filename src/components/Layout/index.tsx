@@ -39,9 +39,16 @@ export const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <Row
       type="flex"
-      styles={["mx-auto max-w-full min-w-full min-h-screen flex-col"]}
+      styles={"mx-auto max-w-full min-w-full min-h-screen flex-col"}
     >
-      <MenuOverlay open={open} handleClose={handleModal}>
+      <MenuOverlay
+        open={open}
+        handleClose={handleModal}
+        className={clsx(
+          "transition-all ease-in delay-150  mx-auto max-w-full min-w-full absolute h-fit",
+          open && "overflow-y-hidden max-h-screen"
+        )}
+      >
         {navItems}
       </MenuOverlay>
       <div
@@ -50,7 +57,7 @@ export const Layout = ({ children }: { children: ReactNode }) => {
           open && "overflow-y-hidden max-h-screen"
         )}
       >
-        <header className="p-6">
+        <header className="p-2 bg-neutral-200">
           <Header handleOpen={handleModal}>
             <menu className="p-2 menu-vertical sm:menu-horizontal">
               {navItems}
