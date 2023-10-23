@@ -31,8 +31,8 @@ export const MenuOverlay = ({
               xmlns="http://www.w3.org/2000/svg"
             >
               <circle cx="20" cy="20" r="20" fill="white" />
-              <path d="M11 11L29 29" stroke="black" stroke-width="2" />
-              <path d="M29 11L11 29" stroke="black" stroke-width="2" />
+              <path d="M11 11L29 29" stroke="black" strokeWidth="2" />
+              <path d="M29 11L11 29" stroke="black" strokeWidth="2" />
             </svg>
           </Button>
           {children}

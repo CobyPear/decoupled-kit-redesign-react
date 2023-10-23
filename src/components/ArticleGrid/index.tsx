@@ -49,7 +49,7 @@ const ArticleCard = ({ content, articles }: ArticleCardProps) => {
 
     
     [&>figure]:sm:col-span-1
-    [&>figure]:sm:aspect-square
+    [&>figure>img]:sm:aspect-square
     [&>figure>img]:sm:h-full
 
     [&>section]:sm:col-span-1
@@ -59,17 +59,30 @@ const ArticleCard = ({ content, articles }: ArticleCardProps) => {
   const ODD_NUM_ARTICLES_STYLES = classNames`
     col-span-4
 
-    lg:first:col-start-3
+    md:col-span-3
     lg:col-span-4
+    xl:col-span-3
+    2xl:col-span-4
     
-    xl:first:col-start-3
+    md:first:col-start-2
+    lg:first:col-start-3
+    xl:first:col-start-4
+    2xl:first:col-start-3
     
+    last:sm:max-md:col-span-8
+    last:md:max-xl:col-span-6
+    last:lg:max-xl:col-span-8
+
+    last:md:max-lg:col-start-2
+    last:lg:max-xl:col-start-3
+    last:xl:max-2xl:col-start-4
     last:sm:max-2xl:card-side
-    last:sm:max-2xl:col-span-8
+    last:xl:max-2xl:col-span-6
+
     last:sm:max-2xl:grid
     last:sm:max-2xl:gap-6
     last:sm:max-2xl:grid-cols-2
-    last:lg:max-2xl:col-start-3
+    last:xl:max-2xl:col-start-3
     
     [&>figure]:last:sm:max-2xl:col-span-1
 
@@ -103,7 +116,11 @@ const ArticleCard = ({ content, articles }: ArticleCardProps) => {
       <section className="card-body">
         <h2 className="text-black card-title">{content.title}</h2>
         <section className="card-actions flex-col flex-grow">
-          <p>{content.body.summary ? content.body.summary : null}</p>
+          <p className="break-words">
+            {content.body.summary
+              ? content.body.summary
+              : ""}
+          </p>
           <Button
             Element="a"
             size="large"
